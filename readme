@@ -1,0 +1,33 @@
+Asteroids 1.0
+
+Na vypracovanie zápočtového programu som využil unity a scripty som písal v jazyku C sharp
+
+Program sa skladá zo 6 sctiptov. Prvý script je asteroid, ktorý je pridelený prefabu asteroid.
+V tomto scripte riešim rýchlosť akou sa asteroid pohybuje, akú má maximálnu a minimálnu veľkosť a dĺžku života.
+Pri vytvorení tohto objektu v inom scripte sa náhodne vyberie sprite, z pár spritov, ktoré sú tomuto prefabu pridelené a náhodne sa vyberie veľkosť z 
+určeného rozsahu a hmotnosť objektu. Objekt má collider a rigidbody a spriterenderer v unity. Rigidbody mením náhodne veľkosť a rotáciu aby všetky asteroidy vyzerali trochu inak.
+Asteroidu pridelím rýchlosť. A pri kolízí s objektom bullet, sa asteroid zničí a ak je dosť veľký tak sa vytvoria dva nové. Na tento split mám aj metódu, v ktorej sa vytvoria 
+nové 2 objekty typu asteroid prefab, pridelí sa im polovičná veľkosť, iná rýchlosť a náhodný smer.
+
+script pre spawner asteroidov:
+Metódou invokerepeating v nejakom časovom intervale spawnujem asteroidy, pričom spawnrate sa zvyšuje s pribúdajúcim skóre. Tento script je pridelený objektu asteroid spawner.
+Asteroidy sa spawnujú v okruhu s určeným polomerom, na jeho okraji. A s náhodnou odchýlkou letia približne do stredu mapy. 
+
+script player je pridelený rovnako pomenovanému objektu v unity. 
+V metóde update riešim pohyb hráča. Stláčaním tlačítiek sa hráč pohybuje buď dopredu alebo rotuje. Pri stlačení space hráč strieľa. 
+Ak hráč prejde na okraj mapy, tak sa teleportuje na opačný koniec mapy. 
+V metóde shoot sa potom vytvorí object bullet z prefabu bullet.
+Ak hráč narazí do asteroidu, tak je objektu vynulovaná rotačná a obyčajná rýchlosť.
+
+script bullet je pridelený objektu bullet. Pri spawnutí mu je nastavená trajektória zhodná s trajektóriou hráča a daná rýchlosť. Pri kolízí s asteroidom sa bullet zničí
+Po nejakom časovom intervale sa objekt zničí. To je na to aby v programe nebolo príľiš veľa objektov. 
+
+script button je pridelený objektu button. Pri stlačení buttonu sa reštartuje scéna.
+
+A nakoniec gamemanager je script, ktorý celú hru spája dokopy. Na scéne mám textové polia, ktoré ukazujú skóre v hre, počet životov, text, ktorý ukazuje gameover,
+text ktorý ukazuje finálne skóre na konci hry a button,
+ktorý po prehratí reštartuje scénu. V gamemanageri sa pri štarte text gameover a button nastavia na neaktívne. V update sa updatuje skóre a počet zostávajúcich životov hráča
+Pri zničení asteroidu sa v gamemanageri zapne animácia xplózie na mieste kde bol asteroid a zvýši sa nahraté skóre.
+Ak hráč zomrie, tak sa mu zníži počet životov a ak ich má viac ako 0, tak sa hráč respawne. Pri respawne sa vynuluje pozícia a rotácia objektu player, hráč sa nastaví na aktívneho,
+čiže sa môže znovu hýbať. A na pár sekúnd sa hráč stáva nesmmrteľným, tým že sa zmení layer na ktorú hráč patrí. Táto layer so žiadnym gameobjectom neinteracuje. Pri gameover
+, čiže keď hráčovi dôjdu životy sa ukáže gameover text, reštartovací button a skryjú sa texty so skóre a počtom životov.
