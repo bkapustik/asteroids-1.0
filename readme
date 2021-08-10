@@ -1,5 +1,9 @@
 Asteroids 1.0
 
+Cieľom hry je nahrať čo najvyššie skóre. S pribúdajúcim skóre sa zvyšuje náročnosť hry. Hra sa ovláda pomocou space, w, a, d . w je pohyb do predu, a a d sú rotácia lode 
+doľava a doprava. Spaceom sa strieľajú guľky. Ak hráč trafí asteroid guľkou, tak sa asteroid zničí a hráč získa skóre dané veľkosťou asteroidu. Ak je asteroid dosť veľký 
+tak sa rozdelí na menšie. Ak hráč narazí do asteroidu, tak hráč stratí život. Hráč má celkovo 3 životy.
+
 Na vypracovanie zápočtového programu som využil unity a scripty som písal v jazyku C sharp
 
 Program sa skladá zo 6 sctiptov. Prvý script je asteroid, ktorý je pridelený prefabu asteroid.
